@@ -31,13 +31,19 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-300 via-blue-400 to-indigo-500 flex items-center justify-center px-4 py-8 mx-auto">
       <div className="bg-white bg-opacity-90 backdrop-blur-md p-8 rounded-3xl shadow-2xl w-full max-w-lg">
-        <h1 className="text-3xl font-extrabold text-blue-800 mb-6">🌤️ City Weather Forecast</h1>
+        <h1 className="text-3xl font-extrabold text-blue-800 mb-6 mx-auto text-center">🌤️WeatherLens</h1>
 
         <input
           type="text"
           placeholder="Enter city name..."
           value={city}
           onChange={(e) => setCity(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              fetchWeather();
+            }
+          }
+          }
           className="w-full px-5 py-3 mb-4 border border-blue-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
         />
 
@@ -53,16 +59,40 @@ export default function App() {
         )}
 
         {weather && (
-          <div className="mt-6 text-left bg-blue-50 rounded-xl p-5 shadow-md">
-            <h2 className="text-2xl font-bold text-blue-700">
-              {weather.name}, {weather.sys.country}
+          <div className="mt-8 bg-gradient-to-r from-blue-100 to-blue-200 p-6 rounded-2xl shadow-lg animate-fade-in">
+            <h2 className="text-3xl font-bold text-blue-800 mb-4 flex items-center gap-2">
+              📍 {weather.name}, {weather.sys.country}
             </h2>
-            <p className="text-gray-700 mt-2">🌡️ Temperature: <span className="font-semibold">{weather.main.temp}°C</span></p>
-            <p className="text-gray-700">🌥️ Condition: <span className="capitalize">{weather.weather[0].description}</span></p>
-            <p className="text-gray-700">💧 Humidity: {weather.main.humidity}%</p>
-            <p className="text-gray-700">🌬️ Wind Speed: {weather.wind.speed} m/s</p>
+            <div className="grid grid-cols-2 gap-4 text-gray-800">
+              <div className="flex items-center gap-2">
+                🌡️
+                <p>
+                  <span className="font-semibold">Temp:</span> {weather.main.temp}°C
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                🌥️
+                <p>
+                  <span className="font-semibold">Condition:</span>{' '}
+                  <span className="capitalize">{weather.weather[0].description}</span>
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                💧
+                <p>
+                  <span className="font-semibold">Humidity:</span> {weather.main.humidity}%
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                🌬️
+                <p>
+                  <span className="font-semibold">Wind:</span> {weather.wind.speed} m/s
+                </p>
+              </div>
+            </div>
           </div>
         )}
+
       </div>
     </div>
 
