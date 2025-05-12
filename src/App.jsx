@@ -63,7 +63,7 @@ export default function App() {
             <h2 className="text-3xl font-bold text-blue-800 mb-4 flex items-center gap-2">
               📍 {weather.name}, {weather.sys.country}
             </h2>
-            <div className="grid grid-cols-2 gap-4 text-gray-800">
+            <div className="grid sm:grid-cols-2 gap-4 text-gray-800">
               <div className="flex items-center gap-2">
                 🌡️
                 <p>
