@@ -8,6 +8,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  //API KEYs
   const API_KEY = '00921acb35a81fd95408ca719c00ca9c';
   // const API_KEY = '5ecfa200731b325caf84f2776816d999'; 
 
